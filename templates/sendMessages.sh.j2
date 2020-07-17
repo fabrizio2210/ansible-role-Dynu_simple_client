@@ -1,0 +1,36 @@
+#!/bin/sh
+#
+#  This script sends whatever is piped to it as a message to the specified Telegram bot
+#
+message=$( cat )
+apiToken={{ dynu_simple_client_telegram_API_token }}
+# example:
+# apiToken=123456789:AbCdEfgijk1LmPQRSTu234v5Wx-yZA67BCD
+userChatId={{ dynu_simple_client_telegram_user_chat_id }}
+# example:
+# userChatId=1
+
+
+sendTelegram() {
+        curl -s \
+        -X POST \
+        https://api.telegram.org/bot$apiToken/sendMessage \
+        -d text="$message" \
+        -d chat_id=$userChatId
+        return $?
+}
+
+if  [ -z "$message" ]; then
+        echo "Please pipe a message to me!"
+else
+        _trial=0
+        while [ $_trial -lt 10 ] ; do
+                sendTelegram
+                if [ $? -eq 0 ] ; then
+                        break
+                fi
+                sleep 120
+                let "_trial += 1"
+        done
+fi
+

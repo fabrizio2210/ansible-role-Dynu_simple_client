@@ -1,2 +1,31 @@
 ---
 # tasks file for dynu_simple_client
+
+- name: DYNU_CLIENT | Copy telegram script
+  template:
+    src: sendMessages.sh.j2
+    dest: /usr/local/bin/sendMessages.sh
+    owner: root
+    group: root
+    mode: 0755
+
+- name: DYNU_CLIENT | Copy dynu client script
+  template:
+    src: update-ip.sh.j2
+    dest: /usr/local/bin/update-ip.sh
+    owner: root
+    group: root
+    mode: 0750
+
+- name: DYNU_CLIENT | Check file version for openwrt
+  stat:
+    path: /etc/openwrt_version
+  register: openwrt_version
+
+- name: DYNU_CLIENT | Include tasks for openwrt
+  include_tasks: openwrt.yml
+  when: openwrt_version.stat.exists
+
+- name: DYNU_CLIENT | Include tasks for openwrt
+  include_tasks: debian.yml
+  when: not openwrt_version.stat.exists

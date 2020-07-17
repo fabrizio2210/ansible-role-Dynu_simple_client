@@ -1,0 +1,4 @@
+SHELL=/bin/bash
+PATH=/usr/lib/sysstat:/usr/sbin:/usr/sbin:/usr/bin:/sbin:/bin
+# Keep up to date the external IP
+*/2 * * * * root /usr/local/bin/update-ip.sh >/dev/null 2>&1

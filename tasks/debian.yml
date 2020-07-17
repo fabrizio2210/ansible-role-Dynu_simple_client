@@ -1,0 +1,8 @@
+
+- name: DYNU_CLIENT | Copy crontab settings
+  copy:
+    src: crontab
+    dest: /etc/cron.d/update_ip
+    owner: root
+    group: root
+    mode: 0644

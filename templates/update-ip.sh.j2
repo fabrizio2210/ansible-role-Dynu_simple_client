@@ -1,0 +1,6 @@
+#!/bin/sh
+
+curl -s "https://api.dynu.com/nice/update?hostname={{ dynu_simple_client_domain }}&alias={{ dynu_simple_client_alias }}&myip=10.0.0.0&username={{ dynu_simple_client_username }}&password={{ dynu_simple_client_password }}" 2>&1 \
+        | grep -v "^nochg\|^good" \
+        | sed "s/^/$(date):\nProblem with dynu.net $HOSTNAME: /" \
+        | /usr/local/bin/sendMessages.sh

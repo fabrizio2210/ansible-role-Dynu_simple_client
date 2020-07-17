@@ -1,2 +1,9 @@
 ---
 # defaults file for dynu_simple_client
+dynu_simple_client_telegram_API_token: 123456789:AbCdEfgijk1LmPQRSTu234v5Wx-yZA67BCD
+dynu_simple_client_telegram_user_chat_id: 1234567
+
+dynu_simple_client_domain: no-ip.dynu.net
+dynu_simple_client_alias: mezzocorona
+dynu_simple_client_username: username
+dynu_simple_client_password: 5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8 
