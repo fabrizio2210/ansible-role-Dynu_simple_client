@@ -13,4 +13,5 @@
   lineinfile:
     line: "*/2 * * * * /usr/local/bin/update-ip.sh >/dev/null 2>&1"
     path: /etc/crontabs/root
+    create: true
 
